@@ -1,0 +1,21 @@
+{
+    "name": "Home",
+    "current_id": "entrance",
+    "locations": {
+        "Entrance": {
+            "name": "Entrance",
+            "description": "Unkown",
+            "exits": []
+        },
+        "kitchen": {
+            "name": "kitchen",
+            "description": null,
+            "exits": []
+        },
+        "entrance": {
+            "name": "entrance",
+            "description": null,
+            "exits": []
+        }
+    }
+}
