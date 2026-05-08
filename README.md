@@ -1,4 +1,4 @@
-markdown# Mind Palace Adventure
+##  Mind Palace Adventure
 
 A create-as-you-go text based adventure to build a Mind Palace wrttin python.
 
