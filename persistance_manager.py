@@ -1,7 +1,7 @@
 import json
       
 def new_world():
-    name = input("What is the name of your Mind Palace? ")
+    name = input("What is the name of your Mind Palace?> ")
     return {
         "name": name,
         "current_id":"Entrance",
@@ -18,4 +18,3 @@ def load_world():
 def save_world(current_world):
     with open('world.json', 'w') as file:
         json.dump(current_world, file, indent=4)
-    print("World Saved!")

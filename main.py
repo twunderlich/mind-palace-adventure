@@ -1,5 +1,6 @@
 from game_engine import gameEngine
 from persistance_manager import load_world, new_world, save_world
+from utility import typed_print
 
 def start():
     current_world = load_world()
@@ -13,7 +14,8 @@ def start():
         game.run()
     finally:
         save_world(current_world)
-        print("Goodbye")
+        typed_print("Mind Palace has been saved")
+        typed_print("Goodbye")
 
 #__name__ is a hidden variable in every file
 #__main__ this name is given to the starting point of executiong

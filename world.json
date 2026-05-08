@@ -1,6 +1,6 @@
 {
     "name": "Home",
-    "current_id": "entrance",
+    "current_id": "kitchen",
     "locations": {
         "Entrance": {
             "name": "Entrance",
@@ -14,6 +14,16 @@
         },
         "entrance": {
             "name": "entrance",
+            "description": null,
+            "exits": []
+        },
+        "living room": {
+            "name": "living room",
+            "description": null,
+            "exits": []
+        },
+        "Hallway": {
+            "name": "Hallway",
             "description": null,
             "exits": []
         }
