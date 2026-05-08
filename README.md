@@ -1,6 +1,8 @@
 ##  Mind Palace Adventure
 
-A create-as-you-go text based adventure to build a Mind Palace wrttin python.
+A create-as-you-go text based adventure to build a Mind Palace.
+
+It is written in python
 
 To try it, run main.py
 
