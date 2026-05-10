@@ -20,7 +20,7 @@ def thinking(dots):
     if dots != 0:
         print()
 
-def typing(text, str = None):
+def typing(text, str = ""):
     time.sleep(.4)
     for char in text + str:   
         print(char, end="", flush=True)
@@ -35,3 +35,15 @@ def typed_input(text, dots = 3):
     thinking(dots)
     typing(text, "\n> ")
     return input()
+
+def yes_or_no(question):
+    commands = ["yes", "no"]
+    user_input = None
+    while user_input not in commands:
+        user_input = typed_input(question).lower()
+        if user_input == "yes":
+            return "yes"
+        elif user_input == "no":
+            return "no"
+        else:
+            typed_print(f'"{user_input}" is not valid option, "Yes" or "No")')

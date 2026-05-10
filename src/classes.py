@@ -1,3 +1,17 @@
+class PublicSaves:
+    def __init__(self, data):
+        self.public_saves = data 
+
+    def create_public_saves():
+        return {}
+
+class PlayerProfile:
+    def __init__(self, data):
+        self.player_profile = data 
+
+    def create_player_profile():
+        return {}
+        
 class Player:
     def __init__(self, player_data):
         self.player_data = player_data

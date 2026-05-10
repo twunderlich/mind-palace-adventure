@@ -1,26 +1,41 @@
 from .persistence import load_data, save_data, list_players
-from .classes import Player, Location
+from .classes import PublicSaves, PlayerProfile, Player, Location
 from .utility import typed_print, typed_input, create_unique_id
 from . import narrator
 
 class MainEngine:
     def __init__(self):
         self.running = False
+        self.public_saves = self.load_public_saves()
+        self.b = self.load_player_profile()
         self.players = list_players()
         self.player = None
         self.commands = {
-            "quit": self.quit
+            "quit": self.quit,
         }      
 
-    def load_player(self):
-        username = typed_input("What is your name?")
+    def load_public_saves(self):
+        data = load_data("public_saves.json", "data")
+        if data is None:
+            data = PublicSaves.create_public_saves()
+        return PublicSaves(data)
 
+    def load_player_profile(self):
+        data = load_data("b.json", "data")
+        if data is None:
+            data = PlayerProfile.create_player_profile()
+        return PlayerProfile(data)
+
+    def load_player(self, username):
         if username not in self.players:
             player_id = create_unique_id()
             self.player = Player.create_player(player_id, username) 
             save_data(username, self.player.to_dictionary()) 
 
         self.player = Player()
+
+    def load_mind_place(self, mind):
+        pass
 
     def start(self):
         self.running = True

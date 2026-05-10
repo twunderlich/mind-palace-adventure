@@ -1,4 +1,4 @@
-from src.engines import MainEngine
+from src.main_engine import MainEngine
 
 main = MainEngine()
 
