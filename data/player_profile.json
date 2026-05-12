@@ -1,3 +1,7 @@
 {
-    "players": {}
+    "Guest": {
+        "unique_id": "4b546a9f",
+        "username": "Guest",
+        "mind_palaces": {}
+    }
 }

@@ -1,45 +1,57 @@
-from .persistence import load_data, save_data, list_players
-from .classes import PublicSaves, PlayerProfile, Player, Location
-from .utility import typed_print, typed_input, create_unique_id
+from .persistence import load_data, save_data
+from .dictionary import Dictionary
+from .classes import PlayerProfile, Player, Location
+from .utility import typed_print, typed_input, create_unique_id, yes_or_no
 from . import narrator
 
 class MainEngine:
     def __init__(self):
         self.running = False
-        self.public_saves = self.load_public_saves()
-        self.b = self.load_player_profile()
-        self.players = list_players()
-        self.player = None
+        self.dictionary = self.load_dictionary()
+        self.player_profile = self.load_player_profile()
+        self.player = self.load_player()
         self.commands = {
             "quit": self.quit,
         }      
 
-    def load_public_saves(self):
-        data = load_data("public_saves.json", "data")
+    def load_dictionary(self):
+        data = load_data('dictionary.json', 'data')
+
         if data is None:
-            data = PublicSaves.create_public_saves()
-        return PublicSaves(data)
+            data = {
+                "quit": {"word": "quit", "type": "verb", "phrase_with":[], "synonym": []}
+            }
+
+        return Dictionary(data)
 
     def load_player_profile(self):
-        data = load_data("b.json", "data")
+        data = load_data('player_profile.json', 'data')
+
         if data is None:
             data = PlayerProfile.create_player_profile()
+            save_data('player_profile', data, 'data')
+
         return PlayerProfile(data)
 
-    def load_player(self, username):
-        if username not in self.players:
-            player_id = create_unique_id()
-            self.player = Player.create_player(player_id, username) 
-            save_data(username, self.player.to_dictionary()) 
+    def load_player(self, username = 'Guest'):
+        if not username:
+            username = 'Guest'
 
-        self.player = Player()
+        player_data = self.player_profile.get_player(username)
+
+        if player_data is None:
+            player_id = create_unique_id(self.player_profile.player_profile)
+            player_data = Player.create_player(player_id, username)
+            self.player_profile.player_profile[username] = player_data
+            save_data('player_profile', self.player_profile.player_profile,'data') 
+
+        return Player(player_data)
 
     def load_mind_place(self, mindpalace):
         pass
 
     def quit(self):
-        user_input = narrator.yes_or_no("Would you like to quit?",)
-        print(user_input)
+        user_input = yes_or_no("Would you like to quit?",)
         if user_input == "yes":
             typed_print("Thanks for exploring Mind Palace Adventure")
             typed_print("Goodbye")

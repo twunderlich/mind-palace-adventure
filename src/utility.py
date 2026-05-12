@@ -1,8 +1,12 @@
 import time
 import uuid
 
-def create_unique_id():
-        return uuid.uuid4().hex[:8]
+def create_unique_id(player_profile):
+        while True:
+            new_id = uuid.uuid4().hex[:8]
+            exists = any(data.get('unique_id') == new_id for data in player_profile.values())
+            if not exists:
+                return new_id
 
 pauses = {
     ",": .2,

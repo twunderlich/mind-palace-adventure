@@ -1,22 +1,22 @@
 import json
 import os
 
-def list_players():
-    player_list =[]
-    if not os.path.exists('data/saves'):
-        return player_list
-    else:
-        for file in os.listdir('data/saves'):
-            if file.endswith('.json'):
-                player_list.append(file.removesuffix('.json'))
-    return player_list
+# def list_players():
+#     player_list =[]
+#     if not os.path.exists('data/saves'):
+#         return player_list
+#     else:
+#         for file in os.listdir('data/saves'):
+#             if file.endswith('.json'):
+#                 player_list.append(file.removesuffix('.json'))
+#     return player_list
 
 def load_data(file_name: str, path: str):
     file_path = os.path.join(path, file_name)
 
     try: # The try/except handles the error if there is no file
         with open(file_path, 'r') as file:
-            return json.load(file) # Return the world so other functions can use it
+            return json.load(file) # Return file so other functions can use it
     except FileNotFoundError:
         return None
     

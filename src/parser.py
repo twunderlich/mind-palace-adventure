@@ -4,6 +4,16 @@ dic = {
 	"get": {"word": "get", "type": "verb"}
 }
 
+# https://guidetogrammar.org/grammar/diagrams2/one_pager1.htm
+# https://www.k12reader.com/worksheet/sentence-diagramming-guide/view/
+
+
+diagram = {
+	"predicate": {
+		"verb": "action"
+	}
+}
+
 class Parser:
 	def __init__(self, dictionary):
 		self.dictionary = dictionary
@@ -18,6 +28,8 @@ class Parser:
 					parsed.append(word)
 
 		return parsed
+	
+	
 
 text = "I would like to pickup the red ball"
 

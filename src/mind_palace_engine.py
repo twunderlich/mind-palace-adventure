@@ -1,3 +1,6 @@
+from classes import Location
+from utility import typed_input, typed_print
+
 class gameEngine:
     def __init__(self, current_world):
         self.world = current_world

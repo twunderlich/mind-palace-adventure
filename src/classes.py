@@ -1,16 +1,21 @@
-class PublicSaves:
-    def __init__(self, data):
-        self.public_saves = data 
-
-    def create_public_saves():
-        return {}
-
 class PlayerProfile:
     def __init__(self, data):
         self.player_profile = data 
 
     def create_player_profile():
-        return {}
+        return {
+            "Guest":{
+                "unique_id": "4b546a9f",
+                "username": "Guest",
+                "mind_palaces": {}
+            }
+        }
+    
+    def get_player_profile(self):
+        return self.player_profile
+
+    def get_player(self, username):
+        return self.player_profile.get(username)
         
 class Player:
     def __init__(self, player_data):
@@ -19,6 +24,8 @@ class Player:
         self.username = player_data['username']
         self.mind_palaces = player_data["mind_palaces"]
 
+
+    @staticmethod
     def create_player(unique_id, username):
         return{
              "unique_id": unique_id,
@@ -36,7 +43,7 @@ class MindPalace:
         self.current_id = mind_palace_data.get("current_id", "Unknown")
         self.rooms = mind_palace_data.get("rooms", {})
 
-    def create_mind_palace(unique_id, name):
+    def create_mind_palace(self, unique_id, name):
         return {
         "unique_id": unique_id,
         "name": name,
