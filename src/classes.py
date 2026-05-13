@@ -5,30 +5,33 @@ class PlayerProfile:
     def create_player_profile():
         return {
             "Guest":{
-                "unique_id": "4b546a9f",
                 "username": "Guest",
-                "mind_palaces": {}
+                "mind_palaces": ["Main"]
             }
         }
+
+    def to_dictionary (self):
+        return self.player_profile
     
     def get_player_profile(self):
         return self.player_profile
 
     def get_player(self, username):
+        """
+        
+        """
         return self.player_profile.get(username)
         
 class Player:
     def __init__(self, player_data):
         self.player_data = player_data
-        self.unique_id = player_data['unique_id']
         self.username = player_data['username']
         self.mind_palaces = player_data["mind_palaces"]
 
 
     @staticmethod
-    def create_player(unique_id, username):
+    def create_player(username):
         return{
-             "unique_id": unique_id,
              "username": username,
              "mind_palaces":{}
          }
@@ -38,14 +41,12 @@ class Player:
 
 class MindPalace:
     def __init__(self, mind_palace_data):
-        self.unique_id = mind_palace_data.get("unique_id", "unknown")
         self.name = mind_palace_data.get("name", "Unknown")
         self.current_id = mind_palace_data.get("current_id", "Unknown")
         self.rooms = mind_palace_data.get("rooms", {})
 
-    def create_mind_palace(self, unique_id, name):
+    def create_mind_palace(self, name):
         return {
-        "unique_id": unique_id,
         "name": name,
         "current_id": "Entrance",
         "rooms": {}, 

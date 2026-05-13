@@ -2,6 +2,9 @@ class Dictionary:
     def __init__(self, data):
         self.dictionary = data
 
+    def to_dictionary(self):
+        return self.dictionary
+
     def create_word(
         self, word = None, type = None, phrase_with = None, synonyms = None):
         word = {

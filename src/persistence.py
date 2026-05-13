@@ -12,6 +12,8 @@ import os
 #     return player_list
 
 def load_data(file_name: str, path: str):
+    if not file_name.endswith('.json'):
+        file_name += '.json'
     file_path = os.path.join(path, file_name)
 
     try: # The try/except handles the error if there is no file

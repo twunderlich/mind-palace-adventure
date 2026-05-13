@@ -1,12 +1,22 @@
 import time
 import uuid
 
-def create_unique_id(player_profile):
-        while True:
-            new_id = uuid.uuid4().hex[:8]
-            exists = any(data.get('unique_id') == new_id for data in player_profile.values())
-            if not exists:
-                return new_id
+def create_unique_id(data = None):
+    """
+    Creates a unique 8 digit hexidecimal.
+    Args:
+        data: A dictionary of objects where each object has a 'unique_id' key
+    Returns the unique 8 digit hexidecimal
+    """
+    while True:
+        new_id = uuid.uuid4().hex[:8]
+
+        if data is None:
+            return new_id
+
+        exists = any(data.get('unique_id') == new_id for data in player_profile.values())
+        if not exists:
+            return new_id
 
 pauses = {
     ",": .2,
