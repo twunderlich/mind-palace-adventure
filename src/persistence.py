@@ -1,15 +1,7 @@
-import json
-import os
+import json, os
+from .dictionary import Dictionary
+from .classes import MindPalace
 
-# def list_players():
-#     player_list =[]
-#     if not os.path.exists('data/saves'):
-#         return player_list
-#     else:
-#         for file in os.listdir('data/saves'):
-#             if file.endswith('.json'):
-#                 player_list.append(file.removesuffix('.json'))
-#     return player_list
 
 def load_data(file_name: str, path: str):
     if not file_name.endswith('.json'):
@@ -22,6 +14,7 @@ def load_data(file_name: str, path: str):
     except FileNotFoundError:
         return None
     
+
 def save_data(file_name: str, data: dict, path: str): 
     if not file_name.endswith('.json'):
         file_name += '.json'
@@ -36,3 +29,27 @@ def save_data(file_name: str, data: dict, path: str):
             json.dump(data, file, indent=4)
     except IOError as e:
         print(f"System says: {e}")
+
+
+def load_dictionary():
+    data = load_data('dictionary.json', 'data')
+    return Dictionary(data)
+
+
+def save_dictionary(dictionary_data):
+    return save_data('dictionary.json', dictionary_data, 'data')
+
+
+def load_mind_palace(mind_palace_name):
+    data = load_data(mind_palace_name, 'data/saves')
+    return MindPalace(data)
+
+
+def save_mind_palace(mind_palace):
+    return save_data(mind_palace['name'], mind_palace, 'data/saves')
+
+
+def create_mind_palace(mind_palace_name):
+        data = MindPalace.create_mind_palace(mind_palace_name)
+        save_data(mind_palace_name, data, 'data/saves')
+        return MindPalace(data)

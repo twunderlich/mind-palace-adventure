@@ -1,5 +1,4 @@
-import time
-import uuid
+import time, uuid, code
 
 def create_unique_id(data = None):
     """

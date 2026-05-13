@@ -1,13 +1,13 @@
 {
-	"name": "Main",
-	"current_id": "Void",
-	"rooms": {
-		"Entrance": {
-			"name": "Entrance",
-			"description": "a white void.",
-			"unique_id":"",
-			"inventory": [],
-			"exits": []
-		}
-	}
+    "name": "Main",
+    "current_id": "Void",
+    "rooms": {
+        "Entrance": {
+            "name": "Entrance",
+            "description": "a white void.",
+            "unique_id": "",
+            "inventory": [],
+            "exits": []
+        }
+    }
 }
