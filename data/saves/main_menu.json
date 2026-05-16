@@ -9,12 +9,5 @@
             "inventory": [],
             "exits": []
         }
-    },
-    "current_room": {
-        "name": "Menu",
-        "description": "a white void.",
-        "visit_count": 0,
-        "inventory": [],
-        "exits": []
     }
 }

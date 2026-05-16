@@ -17,6 +17,8 @@ def create_unique_id(data = None):
         if not exists:
             return new_id
 
+print(create_unique_id())
+
 pauses = {
     ",": .2,
     ":": .2,
@@ -55,8 +57,8 @@ def yes_or_no(question):
     while user_input not in commands:
         user_input = typed_input(question).lower()
         if user_input == "yes":
-            return "yes"
+            return True
         elif user_input == "no":
-            return "no"
+            return False
         else:
             typed_print(f'"{user_input}" is not valid option, "Yes" or "No")')

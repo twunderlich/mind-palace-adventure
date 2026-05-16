@@ -1,4 +1,4 @@
-from .persistence import load_dictionary, load_mind_palace, save_dictionary, save_mind_palace
+from .persistence import load_data, save_data
 from .dictionary import Dictionary
 from .classes import MindPalace, Location
 from .utility import typed_print, typed_input, create_unique_id, yes_or_no
@@ -7,16 +7,24 @@ import code
 class MainEngine:
     def __init__(self):
         self.running = False
-        self.dictionary = load_dictionary()
-        self.mind_palace = {}
-        self.mind_palace = load_mind_palace('Main')
+        self.dictionary = None
+        self.mind_palace = None
         self.commands = {
             "quit": self.quit,
             "save": self.save,
             "reset": self.reset,
-            "console": self.console
-
+            "console": self.console            
         }
+
+        self.dictionary = load_data('dictionary.json', 'data')
+        if not self.dictionary:
+            print("dictionary.json not loaded")
+        self.dictionary = Dictionary(self.dictionary)
+
+        self.mind_palace = load_data('main_menu.json', 'data/saves')
+        if not self.mind_palace:
+            print("main_menu.json not loaded")
+        self.mind_palace = MindPalace(self.mind_palace)
 
     def console(self):
         return code.interact("DEVELOPER PAUSE", local={'engine': self}) 
@@ -28,14 +36,11 @@ class MainEngine:
         pass    
 
     def quit(self):
-        user_input = yes_or_no("Would you like to quit?",)
-
-        if user_input == "yes":
-            typed_print("Thanks for exploring Mind Palace Adventure")
-            typed_print("Goodbye")
-            save_mind_palace(self.mind_palace.to_dictionary())
-            save_dictionary(self.dictionary.to_dictionary())
-            self.running = False
+        typed_print("Thanks for exploring Mind Palace Adventure")
+        typed_print("Goodbye")
+        save_data(self.mind_palace.name, self.mind_palace.to_dictionary(),'data/saves')
+        save_data('dictionary', self.dictionary.to_dictionary(), 'data')
+        self.running = False
 
     def start(self):
         self.running = True
@@ -45,10 +50,13 @@ class MainEngine:
 {" " * 25}Mind Palace Adventures
 {"~" * 75}
             """)
+        
+        typed_print(self.mind_palace.current_room['description'])
 
         while self.running:
             user_input = input("> ").lower()
             if user_input in self.commands:
-                self.commands[user_input]()
-            else:
-                typed_print(f'"{user_input}" is not a valid option')
+                if yes_or_no(f"Would you like to {user_input}?"):
+                    self.commands[user_input]()
+
+        typed_print("Goodbye")
