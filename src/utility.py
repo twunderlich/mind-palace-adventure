@@ -17,7 +17,7 @@ def create_unique_id(data = None):
         if not exists:
             return new_id
 
-print(create_unique_id())
+# print(create_unique_id())
 
 pauses = {
     ",": .2,
